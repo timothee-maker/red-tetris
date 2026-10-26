@@ -150,3 +150,6 @@ vite.config.ts.timestamp-*
 
 # macOS
 .DS_Store
+
+# Local French plan (English copy: PLAN.en.md)
+PLAN.md

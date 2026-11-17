@@ -1,0 +1,390 @@
+:root {
+  /* Scene unit: everything in the landscape scales with it. */
+  --u: clamp(5px, min(1vw, 1.6vh), 14px);
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #14141c;
+  color: #eee;
+  font-family: system-ui, sans-serif;
+}
+
+/* ---------- Landing scene (CSS only) ---------- */
+
+.scene {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(180deg, #7f8fb8 0%, #b9a3b8 35%, #efb9a2 62%, #f6d3b8 100%);
+}
+
+.hero {
+  position: absolute;
+  top: 9vh;
+  left: 0;
+  right: 0;
+  padding: 0 16px;
+  text-align: center;
+  color: #f4effb;
+  text-shadow: 0 2px 24px rgba(40, 30, 70, 0.35);
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2.4rem, 6.5vw, 5.2rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.hero p {
+  margin: 12px 0 0;
+  font-size: clamp(1rem, 1.8vw, 1.5rem);
+  opacity: 0.9;
+}
+
+.hill {
+  position: absolute;
+  left: -5%;
+  right: -5%;
+}
+
+.hill--far {
+  bottom: 22vh;
+  height: 38vh;
+  background: linear-gradient(180deg, #8f93b3, #6d7a96);
+  clip-path: polygon(
+    0 62%,
+    10% 38%,
+    22% 58%,
+    36% 28%,
+    50% 60%,
+    64% 30%,
+    78% 55%,
+    90% 26%,
+    100% 48%,
+    100% 100%,
+    0 100%
+  );
+  filter: blur(2px);
+}
+
+.hill--mid {
+  bottom: 12vh;
+  height: 36vh;
+  background: linear-gradient(180deg, #56706c, #2e4642);
+  clip-path: polygon(
+    0 40%,
+    14% 58%,
+    28% 30%,
+    44% 62%,
+    58% 36%,
+    72% 64%,
+    86% 34%,
+    100% 56%,
+    100% 100%,
+    0 100%
+  );
+}
+
+.hill--near {
+  left: -10%;
+  right: -10%;
+  bottom: 0;
+  height: 30vh;
+  border-radius: 50% 50% 0 0 / 70% 70% 0 0;
+  background: linear-gradient(180deg, #5a7a43, #22351e);
+}
+
+.mist {
+  position: absolute;
+  width: 60vw;
+  height: 22vh;
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.5), transparent 70%);
+  filter: blur(14px);
+}
+
+.mist--left {
+  left: -5vw;
+  bottom: 30vh;
+}
+
+.mist--right {
+  right: -8vw;
+  bottom: 22vh;
+}
+
+/* Desk standing at the top of the near hill. */
+.desk {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% - var(--u) * 2.5);
+  width: calc(var(--u) * 30);
+  height: calc(var(--u) * 18);
+  transform: translateX(-50%);
+}
+
+.desk > * {
+  position: absolute;
+}
+
+.desk__top {
+  left: calc(var(--u) * 8);
+  right: 0;
+  top: calc(var(--u) * 8);
+  height: var(--u);
+  background: #c9a479;
+  border-radius: 2px;
+}
+
+.desk__leg {
+  top: calc(var(--u) * 9);
+  width: calc(var(--u) * 0.6);
+  height: calc(var(--u) * 9);
+  background: #20202a;
+}
+
+.desk__leg--left {
+  left: calc(var(--u) * 9);
+}
+
+.desk__leg--right {
+  right: calc(var(--u) * 1);
+}
+
+.desk__drawer {
+  right: calc(var(--u) * 3);
+  top: calc(var(--u) * 9);
+  width: calc(var(--u) * 5);
+  height: calc(var(--u) * 5);
+  background: #dcbf97;
+  border: 2px solid #b79870;
+}
+
+.chair {
+  left: 0;
+  top: calc(var(--u) * 2);
+  width: calc(var(--u) * 8);
+  height: calc(var(--u) * 16);
+}
+
+.chair > * {
+  position: absolute;
+  background: #3a302d;
+}
+
+.chair__back {
+  left: calc(var(--u) * 0.5);
+  top: 0;
+  width: calc(var(--u) * 3);
+  height: calc(var(--u) * 8);
+  border-radius: 40% 40% 20% 20%;
+}
+
+.chair__seat {
+  left: calc(var(--u) * 0.5);
+  top: calc(var(--u) * 8);
+  width: calc(var(--u) * 7);
+  height: calc(var(--u) * 1.4);
+  border-radius: 999px;
+}
+
+.chair__stem {
+  left: calc(var(--u) * 3.5);
+  top: calc(var(--u) * 9.4);
+  width: calc(var(--u) * 0.6);
+  height: calc(var(--u) * 6);
+  background: #9a9a9f;
+}
+
+.laptop {
+  left: calc(var(--u) * 14);
+  bottom: calc(var(--u) * 10);
+  width: calc(var(--u) * 10);
+}
+
+/* The clickable laptop screen. */
+.laptop__screen {
+  position: relative;
+  display: grid;
+  place-items: center;
+  gap: calc(var(--u) * 0.4);
+  width: 100%;
+  height: calc(var(--u) * 6.4);
+  padding: 0;
+  border: calc(var(--u) * 0.3) solid #15151b;
+  border-radius: 4px 4px 0 0;
+  background: linear-gradient(160deg, #26263a, #101018);
+  color: #fff;
+  cursor: pointer;
+  transition:
+    box-shadow 0.2s,
+    transform 0.2s;
+}
+
+.laptop__screen:hover:not(:disabled) {
+  box-shadow: 0 0 calc(var(--u) * 2) rgba(120, 140, 255, 0.8);
+  transform: scale(1.04);
+}
+
+.laptop__screen::after {
+  content: '';
+  position: absolute;
+  inset: calc(var(--u) * -0.6);
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  border-radius: 6px;
+  animation: ping 1.8s ease-out infinite;
+  pointer-events: none;
+}
+
+@keyframes ping {
+  from {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.35);
+  }
+}
+
+.laptop__play {
+  font-size: calc(var(--u) * 1.6);
+}
+
+.laptop__blocks {
+  display: flex;
+  gap: 2px;
+}
+
+.laptop__blocks i {
+  width: calc(var(--u) * 0.9);
+  height: calc(var(--u) * 0.9);
+}
+
+.laptop__base {
+  height: calc(var(--u) * 0.5);
+  margin: 0 calc(var(--u) * -0.8);
+  border-radius: 0 0 6px 6px;
+  background: #b9b9c2;
+}
+
+/* ---------- Game screen zooming to the middle ---------- */
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 24, 0.55);
+  animation: fade-in 0.7s ease both;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+.screen {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+
+.screen__panel {
+  --cell: clamp(14px, 4.4vh, 34px);
+  position: relative;
+  /* board + its 1px gaps and padding + panel padding (24px) + bezel (8px) on each side */
+  width: calc(10 * var(--cell) + 11px + 64px);
+  height: calc(20 * var(--cell) + 21px + 64px);
+  padding: 24px;
+  border: 8px solid #15151b;
+  border-radius: 14px;
+  background: #0d0d14;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+  transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+  pointer-events: auto;
+}
+
+.screen__close {
+  position: absolute;
+  top: -4px;
+  right: 2px;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #aaa;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.screen__close:hover {
+  color: #fff;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(10, var(--cell));
+  grid-template-rows: repeat(20, var(--cell));
+  gap: 1px;
+  padding: 1px;
+  background: #2a2a38;
+}
+
+.cell {
+  background: #1b1b26;
+}
+.cell--I {
+  background: #00bcd4;
+}
+.cell--J {
+  background: #2962ff;
+}
+.cell--L {
+  background: #ff9100;
+}
+.cell--O {
+  background: #ffd600;
+}
+.cell--S {
+  background: #00c853;
+}
+.cell--T {
+  background: #aa00ff;
+}
+.cell--Z {
+  background: #ff1744;
+}
+.cell--P {
+  background: #607d8b;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border-radius: inherit;
+  background: rgba(0, 0, 0, 0.78);
+}
+
+.notfound {
+  padding: 48px 16px;
+  text-align: center;
+}
+
+.notfound a {
+  color: #8c9eff;
+}
